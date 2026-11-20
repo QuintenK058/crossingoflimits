@@ -1,0 +1,13 @@
+# Netlify: build + redirects. Legacy redirects and the 404 fallback are generated into dist/_redirects.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
