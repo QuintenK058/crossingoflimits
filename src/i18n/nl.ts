@@ -158,6 +158,23 @@ export const nl = {
       scroll: "Scroll naar beneden",
       videoLabel: "Sfeervideo: motorrijders op een bergweg",
       posterAlt: "Twee motorrijders op een bochtige bergweg in Marokko",
+      slides: [
+        { alt: "Motorrijder op een bochtige bergpas in Andalusië bij zonsondergang", caption: "Andalusië, Spanje" },
+        { alt: "Twee motorrijders op een woestijnweg richting de Hoge Atlas", caption: "Hoge Atlas, Marokko" },
+        { alt: "Groep motorrijders op een kustweg langs de Middellandse Zee", caption: "Middellandse Zeekust, Spanje" },
+      ],
+      pause: "Diavoorstelling pauzeren",
+      play: "Diavoorstelling afspelen",
+      slideLabel: "Foto {current} van {total}",
+      meta: "7 reizen · 2 landen · vanaf € 1.275",
+    },
+    marquee: ["Bergpassen", "Kustwegen", "Woestijnwegen", "Witte dorpjes", "Samen eten", "Kampvuur", "Sfeervolle verblijven"],
+    trips: {
+      eyebrow: "De reizen",
+      title: "Zeven routes. Twee landen.",
+      text: "Van de Pyreneeën tot de Sahara. Elke route kun je als groepsreis of individueel rijden.",
+      cta: "Alle groepsreizen",
+      hint: "Scroll of swipe",
     },
     intro: {
       eyebrow: "Het concept",
@@ -173,6 +190,7 @@ export const nl = {
       cta: "Lees de volledige ervaring",
     },
     forms: {
+      explore: "Bekijk",
       eyebrow: "Reisvormen",
       title: "Kies jouw manier van reizen",
       group: {

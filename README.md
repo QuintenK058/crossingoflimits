@@ -1,7 +1,8 @@
 # Crossing of Limits – website
 
 Motorreizen door Spanje en Marokko. Vite + React + TypeScript + Tailwind CSS (shadcn/ui-stijl), React Router,
-Framer Motion, Lenis, Supabase, react-hook-form + zod. Nederlands is de standaardtaal, Engels staat onder `/en`.
+Framer Motion, Lenis, Supabase, react-hook-form + zod. Lichte, editoriale vormgeving (papier/inkt/amber),
+lettertypes Archivo (variabel, eigen subset) en Instrument Serif. Nederlands is de standaardtaal, Engels staat onder `/en`.
 
 Alle pagina's worden bij `npm run build` **geprerenderd** naar statische HTML (eigen title, meta, hreflang en
 JSON-LD per pagina en taal) en daarna in de browser gehydrateerd.
@@ -31,7 +32,8 @@ node scripts/serve.mjs 4173   # dist lokaal serveren (zoals een statische host)
 | `npm run check:links` | Controleert alle interne links en assets van de build (eerst serveren) |
 | `npm run screenshots` | Screenshots van alle pagina's op 375/768/1280/1440 px → `reports/screenshots` |
 | `npm run lighthouse` | Lighthouse mobiel (mediaan van 3 runs) → `reports/lighthouse` |
-| `npm run optimize:media` | Genereert AVIF/WebP/JPEG-varianten en de video's uit `media-src/` |
+| `npm run optimize:media` | Genereert AVIF/WebP/JPEG-varianten uit `media-src/` |
+| `npm run subset:font` | Bouwt de Archivo-fontsubset opnieuw (vereist `pip install fonttools brotli`) |
 
 ## Content aanpassen (reizen, FAQ, teksten)
 
@@ -56,7 +58,11 @@ Alle content staat in getypeerde bestanden met een `nl`- en `en`-versie. TypeScr
 ### Foto's toevoegen
 Zet de originele foto (jpg/png, liefst ≥ 1920 px breed) in `media-src/photos/` en draai `npm run optimize:media`.
 Gebruik daarna de sleutel `photos/<bestandsnaam>` in de content-bestanden (bijv. `image: "photos/sahara-kamp"`).
-Routekaarten gaan in `media-src/itineraries/`. Een nieuwe hero-video vervang je in `media-src/video/hero.mp4`.
+Routekaarten gaan in `media-src/itineraries/`. De hero op de homepage is een fotomontage van
+`photos/hero-andalusia`, `photos/hero-atlas` en `photos/hero-coast` (zie `src/components/home/HeroMontage.tsx`).
+
+De huidige foto's zijn met AI gegenereerd (Higgsfield) als sfeerbeeld. Vervang ze bij voorkeur door echte foto's
+van de reizen: zelfde bestandsnaam in `media-src/photos/` zetten en `npm run optimize:media` draaien.
 
 ## Omgevingsvariabelen
 

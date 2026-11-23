@@ -27,11 +27,11 @@ export function MobileMenu({ open, onOpenChange }: { open: boolean; onOpenChange
             <Dialog.Content forceMount asChild aria-describedby={undefined}>
               <m.div
                 id="mobile-menu"
-                className="fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-background noise"
-                initial={ok ? { opacity: 0, clipPath: "circle(0% at 100% 0%)" } : false}
-                animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
-                exit={ok ? { opacity: 0, transition: { duration: 0.25 } } : undefined}
-                transition={{ duration: 0.6, ease }}
+                className="theme-dark grain fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-background text-foreground"
+                initial={ok ? { y: "-100%" } : false}
+                animate={{ y: "0%" }}
+                exit={ok ? { y: "-100%", transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } } : undefined}
+                transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
               >
                 <Dialog.Title className="sr-only">{t.nav.menu}</Dialog.Title>
                 <div className="container flex h-[var(--nav-h)] shrink-0 items-center justify-between">
@@ -48,24 +48,26 @@ export function MobileMenu({ open, onOpenChange }: { open: boolean; onOpenChange
                     className="space-y-1"
                     initial={ok ? "hidden" : false}
                     animate="show"
-                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } } }}
+                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.3 } } }}
                   >
-                    {items.map((item) => (
-                      <m.li
-                        key={item.href}
-                        variants={{
-                          hidden: { opacity: 0, y: 24 },
-                          show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
-                        }}
-                      >
-                        <LocalLink
-                          to={item.href}
-                          onClick={close}
-                          className="font-display block py-1.5 text-[clamp(2rem,9vw,3.5rem)] uppercase leading-none transition-colors hover:text-primary"
+                    {items.map((item, i) => (
+                      <li key={item.href} className="overflow-hidden">
+                        <m.div
+                          variants={{
+                            hidden: { y: "110%" },
+                            show: { y: "0%", transition: { duration: 0.7, ease } },
+                          }}
                         >
-                          {item.label}
-                        </LocalLink>
-                      </m.li>
+                          <LocalLink
+                            to={item.href}
+                            onClick={close}
+                            className="font-display group flex items-baseline gap-4 py-1 text-[clamp(2.2rem,9vw,4rem)] leading-[1.02] transition-colors hover:text-accent"
+                          >
+                            <span className="serif-accent text-base text-foreground/50">{String(i + 1).padStart(2, "0")}</span>
+                            {item.label}
+                          </LocalLink>
+                        </m.div>
+                      </li>
                     ))}
                   </m.ul>
                   <m.div
@@ -74,22 +76,22 @@ export function MobileMenu({ open, onOpenChange }: { open: boolean; onOpenChange
                     transition={{ delay: 0.6, duration: 0.5, ease }}
                     className="mt-10 space-y-6"
                   >
-                    <ButtonLink to={pathFor("plan", lang)} size="lg" onClick={close}>
+                    <ButtonLink to={pathFor("plan", lang)} size="lg" variant="accent" onClick={close}>
                       {t.common.planCta}
                     </ButtonLink>
                     <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-foreground/80">
                       <li>
-                        <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-primary">
+                        <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-accent">
                           <Mail className="size-4" aria-hidden="true" /> {site.email}
                         </a>
                       </li>
                       <li>
-                        <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-primary">
+                        <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-accent">
                           <Phone className="size-4" aria-hidden="true" /> {site.phoneDisplay}
                         </a>
                       </li>
                       <li>
-                        <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-primary">
+                        <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
                           <MessageCircle className="size-4" aria-hidden="true" /> {t.footer.whatsapp}
                           <span className="sr-only">{t.common.opensInNewTab}</span>
                         </a>

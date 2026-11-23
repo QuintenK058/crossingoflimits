@@ -278,10 +278,10 @@ function Dashboard({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }
                     <div>
                       <h2 className="font-sans text-lg font-semibold normal-case">{r.naam}</h2>
                       <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-foreground/80">
-                        <a href={`mailto:${r.email}`} className="inline-flex items-center gap-1 hover:text-primary">
+                        <a href={`mailto:${r.email}`} className="inline-flex items-center gap-1 hover:text-accent">
                           <Mail className="size-3.5" aria-hidden="true" /> {r.email}
                         </a>
-                        <a href={`tel:${r.telefoon}`} className="inline-flex items-center gap-1 hover:text-primary">
+                        <a href={`tel:${r.telefoon}`} className="inline-flex items-center gap-1 hover:text-accent">
                           <Phone className="size-3.5" aria-hidden="true" /> {r.telefoon}
                         </a>
                       </p>
@@ -310,7 +310,7 @@ function Dashboard({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }
                   </dl>
                   {r.reisperiode && r.reis_start && <p className="mt-3 text-sm text-foreground/80">{r.reisperiode}</p>}
                   {r.opmerkingen && <p className="mt-3 whitespace-pre-line rounded-lg bg-background/60 p-3 text-sm text-foreground/85">{r.opmerkingen}</p>}
-                  <a href={replyHref(r)} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+                  <a href={replyHref(r)} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline">
                     <Mail className="size-4" aria-hidden="true" /> {a.reply}
                   </a>
                 </li>
@@ -328,7 +328,7 @@ function Dashboard({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }
                   <h2 className="font-sans text-lg font-semibold normal-case">{msg.name}</h2>
                   <span className="text-xs text-foreground/70">{fmtDate(msg.created_at)}</span>
                 </div>
-                <a href={`mailto:${msg.email}`} className="text-sm text-primary hover:underline">
+                <a href={`mailto:${msg.email}`} className="text-sm text-accent hover:underline">
                   {msg.email}
                 </a>
                 <p className="mt-3 whitespace-pre-line text-sm text-foreground/85">{msg.message}</p>

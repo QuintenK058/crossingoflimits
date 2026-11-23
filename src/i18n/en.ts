@@ -156,6 +156,23 @@ export const en: Dict = {
       scroll: "Scroll down",
       videoLabel: "Mood video: motorcyclists on a mountain road",
       posterAlt: "Two motorcyclists on a winding mountain road in Morocco",
+      slides: [
+        { alt: "Motorcyclist on a winding mountain pass in Andalusia at sunset", caption: "Andalusia, Spain" },
+        { alt: "Two motorcyclists on a desert road towards the High Atlas", caption: "High Atlas, Morocco" },
+        { alt: "Group of motorcyclists on a Mediterranean coastal road", caption: "Mediterranean coast, Spain" },
+      ],
+      pause: "Pause slideshow",
+      play: "Play slideshow",
+      slideLabel: "Photo {current} of {total}",
+      meta: "7 tours · 2 countries · from €1,275",
+    },
+    marquee: ["Mountain passes", "Coastal roads", "Desert roads", "White villages", "Shared dinners", "Campfire", "Characterful stays"],
+    trips: {
+      eyebrow: "The tours",
+      title: "Seven routes. Two countries.",
+      text: "From the Pyrenees to the Sahara. Every route can be ridden as a group tour or individually.",
+      cta: "All group tours",
+      hint: "Scroll or swipe",
     },
     intro: {
       eyebrow: "The concept",
@@ -171,6 +188,7 @@ export const en: Dict = {
       cta: "Read the full experience",
     },
     forms: {
+      explore: "View",
       eyebrow: "Ways to travel",
       title: "Choose how you want to ride",
       group: {

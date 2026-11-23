@@ -17,52 +17,47 @@ export function TripCard({ trip, headingLevel = "h3", className }: { trip: Trip;
   const H = headingLevel;
   const price = typeof trip.priceFrom === "number" && !isPlaceholder(trip.priceFrom) ? formatPrice(trip.priceFrom, lang) : null;
   return (
-    <article
-      className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_24px_60px_-24px_rgba(224,122,47,0.35)] focus-within:-translate-y-1.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0",
-        className,
-      )}
-    >
-      <div className="relative aspect-[4/3] overflow-hidden">
+    <article className={cn("group relative flex h-full flex-col", className)} data-cursor={t.common.viewTour.split(" ")[0]}>
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius)] bg-secondary">
         <Picture
           image={trip.image}
           alt=""
-          sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 1280px) 420px, (min-width: 768px) 50vw, 90vw"
           className="h-full w-full"
-          imgClassName="transition-transform [transition-duration:1200ms] ease-out group-hover:scale-[1.06] motion-reduce:transition-none"
+          imgClassName="transition-transform [transition-duration:1400ms] ease-out group-hover:scale-[1.07] motion-reduce:transition-none"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" aria-hidden="true" />
-        <span className="absolute left-4 top-4 rounded-full bg-background/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" aria-hidden="true" />
+        <span className="absolute left-4 top-4 rounded-full bg-background px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">
           {trip.country === "spain" ? t.common.spain : t.common.morocco}
         </span>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-4 right-4 grid size-12 translate-y-2 place-items-center rounded-full bg-primary text-[hsl(var(--ink))] opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+        >
+          <ArrowUpRight className="size-5" />
+        </span>
       </div>
-      <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs font-semibold uppercase tracking-eyebrow text-primary">
-          {tripDays(trip, t.common.or)}-{t.common.dayTour}
-        </p>
-        <H className="mt-3 font-display text-2xl leading-tight">
-          <LocalLink to={pathFor("trip", lang, { slug: trip.slug })} className="after:absolute after:inset-0 focus-visible:outline-none">
+      <div className="flex flex-1 flex-col pt-5">
+        <div className="flex items-baseline justify-between gap-4 text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground">
+          <span>
+            {tripDays(trip, t.common.or)}-{t.common.dayTour}
+          </span>
+          <span className="normal-case tracking-normal text-foreground">
+            {price ? (
+              <>
+                <span className="text-muted-foreground">{t.common.from}</span> <span className="text-base font-bold">{price}</span>
+              </>
+            ) : (
+              t.common.onRequest
+            )}
+          </span>
+        </div>
+        <H className="mt-3 text-[1.6rem] leading-[1.02]">
+          <LocalLink to={pathFor("trip", lang, { slug: trip.slug })} className="link-underline after:absolute after:inset-0 focus-visible:outline-none">
             {l(trip.name)}
           </LocalLink>
         </H>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/75">{l(trip.short)}</p>
-        <div className="mt-6 flex items-end justify-between gap-4 border-t border-border pt-5">
-          <p className="text-sm text-foreground/75">
-            {price ? (
-              <>
-                {t.common.from} <span className="font-display text-2xl text-foreground">{price}</span>
-              </>
-            ) : (
-              <span className="text-foreground">{t.common.onRequest}</span>
-            )}
-          </p>
-          <span
-            aria-hidden="true"
-            className="grid size-11 place-items-center rounded-full border border-foreground/25 transition-colors duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground"
-          >
-            <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:rotate-45" />
-          </span>
-        </div>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{l(trip.short)}</p>
       </div>
     </article>
   );

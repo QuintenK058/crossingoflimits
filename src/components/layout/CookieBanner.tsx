@@ -48,7 +48,7 @@ export function CookieBanner() {
         <Button size="sm" onClick={accept}>
           {t.cookie.accept}
         </Button>
-        <LocalLink to={pathFor("cookies", lang)} className="text-xs underline underline-offset-4 hover:text-primary">
+        <LocalLink to={pathFor("cookies", lang)} className="text-xs underline underline-offset-4 hover:text-accent">
           {t.cookie.more}
         </LocalLink>
       </div>

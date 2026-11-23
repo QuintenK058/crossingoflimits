@@ -22,9 +22,9 @@ export function TripList({ trips, title }: { trips: Trip[]; title: string }) {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 id="trip-list-title" className="heading-2">
-              {title}
+              {title} <sup className="serif-accent align-super text-[0.45em] text-accent">({shown.length})</sup>
             </h2>
-            <p className="mt-3 text-sm text-foreground/70" aria-live="polite">
+            <p className="sr-only" aria-live="polite">
               {fmt(t.toursPage.count, { count: shown.length })}
             </p>
           </div>
@@ -39,7 +39,7 @@ export function TripList({ trips, title }: { trips: Trip[]; title: string }) {
                   "h-10 rounded-full border px-5 text-sm font-medium transition-colors",
                   country === o.value
                     ? "border-foreground bg-foreground text-background"
-                    : "border-foreground/30 hover:border-foreground",
+                    : "border-foreground/25 hover:border-foreground",
                 )}
               >
                 {o.label}
@@ -47,7 +47,7 @@ export function TripList({ trips, title }: { trips: Trip[]; title: string }) {
             ))}
           </div>
         </div>
-        <RevealGroup key={country} as="ul" className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <RevealGroup key={country} as="ul" className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2 xl:grid-cols-3">
           {shown.map((trip) => (
             <RevealItem as="li" key={trip.slug}>
               <TripCard trip={trip} />

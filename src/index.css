@@ -1,39 +1,69 @@
+/* Archivo variable (wght 400–800, wdth 100–125), Latin subset – see scripts/subset-font.sh */
+@font-face {
+  font-family: "Archivo Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  font-stretch: 100% 125%;
+  src: url("/fonts/archivo-var-subset.woff2") format("woff2-variations"), url("/fonts/archivo-var-subset.woff2") format("woff2");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /*
- * Design tokens – Crossing of Limits
- * All colours live here as HSL triplets and are exposed as Tailwind colours.
- *   background #141110 · primary #E07A2F · sand #EFE5D3
+ * Design tokens – Crossing of Limits (light editorial)
+ *   paper #F3EEE5 · ink #15110E · amber #E07A2F (accent) · amber-ink #A4441A (accent text on paper)
+ * `.theme-dark` re-maps the same tokens for dark (image/video) sections.
  */
 @layer base {
   :root {
-    --background: 20 11% 7%;          /* #141110 */
-    --foreground: 37 50% 91%;         /* #F3EBDD cream */
-    --card: 22 12% 10%;               /* #1C1815 */
-    --card-foreground: 37 50% 91%;
-    --primary: 26 74% 53%;            /* #E07A2F sunset amber */
-    --primary-foreground: 20 11% 7%;
-    --primary-ink: 24 77% 34%;        /* #9A4A14 – amber for text on sand (AA) */
-    --secondary: 22 10% 15%;
-    --secondary-foreground: 37 50% 91%;
-    --muted: 22 10% 14%;
-    --muted-foreground: 33 14% 66%;   /* #B5AA9A */
-    --accent: 33 60% 62%;
-    --accent-foreground: 20 11% 7%;
-    --destructive: 2 75% 62%;
-    --destructive-foreground: 20 11% 7%;
-    --border: 24 11% 18%;
-    --input: 24 11% 22%;
-    --ring: 26 74% 53%;
-    --sand: 38 48% 88%;               /* #EFE5D3 */
-    --sand-deep: 36 40% 82%;
-    --sand-foreground: 20 16% 11%;    /* #211B17 */
-    --sand-muted: 24 12% 30%;
+    --background: 39 36% 93%;         /* #F3EEE5 paper */
+    --foreground: 24 21% 7%;          /* #15110E ink */
+    --card: 40 45% 97%;               /* #FBF8F3 */
+    --card-foreground: 24 21% 7%;
+    --primary: 26 74% 53%;            /* #E07A2F amber – fills, large type */
+    --primary-foreground: 24 21% 7%;
+    --primary-ink: 18 74% 33%;        /* #923C15 – amber text on paper (AA) */
+    --accent-text: var(--primary-ink);
+    --secondary: 37 30% 88%;          /* #E9E2D6 */
+    --secondary-foreground: 24 21% 7%;
+    --muted: 37 30% 88%;
+    --muted-foreground: 28 11% 33%;   /* #5C534A */
+    --accent: 26 74% 53%;
+    --accent-foreground: 24 21% 7%;
+    --destructive: 2 70% 42%;
+    --destructive-foreground: 40 45% 97%;
+    --border: 24 21% 7% / 0.14;
+    --input: 24 21% 7% / 0.28;
+    --ring: 18 72% 37%;
+    --sand: 37 33% 87%;               /* alternate light section #E8DFD0 */
+    --sand-deep: 36 30% 82%;
+    --sand-foreground: 24 21% 7%;
+    --sand-muted: 28 11% 33%;
+    --ink: 24 21% 7%;
+    --paper: 39 36% 93%;
     --ember: 14 78% 45%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
     --nav-h: 4.5rem;
+  }
+
+  .theme-dark {
+    --background: 24 21% 7%;
+    --foreground: 39 36% 93%;
+    --card: 24 16% 11%;
+    --card-foreground: 39 36% 93%;
+    --primary-foreground: 24 21% 7%;
+    --accent-text: var(--primary);
+    --secondary: 24 14% 15%;
+    --secondary-foreground: 39 36% 93%;
+    --muted: 24 14% 15%;
+    --muted-foreground: 35 16% 70%;
+    --border: 39 36% 93% / 0.16;
+    --input: 39 36% 93% / 0.3;
+    --ring: 26 74% 53%;
+    color-scheme: dark;
   }
 
   * { @apply border-border; }
@@ -43,7 +73,7 @@
     text-rendering: optimizeLegibility;
     scroll-padding-top: calc(var(--nav-h) + 1rem);
     background: hsl(var(--background));
-    color-scheme: dark;
+    color-scheme: light;
     position: relative;
   }
   option, optgroup { background: hsl(var(--card)); color: hsl(var(--foreground)); }
@@ -52,26 +82,27 @@
   .lenis.lenis-stopped { overflow: hidden; }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "ss01", "cv11";
+    @apply bg-background font-sans text-foreground antialiased;
+    font-stretch: 100%;
   }
 
   h1, h2, h3, .font-display {
     font-family: theme("fontFamily.display");
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    line-height: 1.02;
-    font-weight: 600;
+    font-weight: 800;
+    font-stretch: 112%;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--primary));
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
     border-radius: 4px;
   }
-  .on-sand :focus-visible { outline-color: hsl(var(--primary-ink)); }
 
-  ::selection { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+  ::selection { background: hsl(var(--primary)); color: hsl(var(--ink)); }
 
   img, video { max-width: 100%; }
 
@@ -87,29 +118,45 @@
 
 @layer components {
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-eyebrow text-primary;
+    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow;
+    color: hsl(var(--accent-text));
+    font-stretch: 100%;
   }
-  .on-sand .eyebrow { @apply text-primary-ink; }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
 
-  .section { @apply py-20 md:py-28 lg:py-32; }
-  .section-tight { @apply py-14 md:py-20; }
+  .serif-accent {
+    font-family: theme("fontFamily.serif");
+    font-style: italic;
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: -0.01em;
+  }
+
+  .section { @apply py-24 md:py-32 lg:py-40; }
+  .section-tight { @apply py-16 md:py-24; }
 
   .grid-12 { @apply grid grid-cols-4 gap-x-4 gap-y-10 md:grid-cols-12 md:gap-x-6 lg:gap-x-8; }
 
-  .heading-display { @apply text-[clamp(2.75rem,8vw,6.5rem)]; }
-  .heading-1 { @apply text-[clamp(2.4rem,5.6vw,4.75rem)]; }
-  .heading-2 { @apply text-[clamp(2rem,4.2vw,3.5rem)]; }
-  .heading-3 { @apply text-[clamp(1.4rem,2.2vw,1.85rem)]; }
+  .heading-display { @apply text-[clamp(3.25rem,12.5vw,11.5rem)]; line-height: 0.86; letter-spacing: -0.05em; }
+  .heading-1 { @apply text-[clamp(2.6rem,7vw,6.25rem)]; line-height: 0.9; }
+  .heading-2 { @apply text-[clamp(2.1rem,4.8vw,4.25rem)]; }
+  .heading-3 { @apply text-[clamp(1.35rem,2.1vw,1.8rem)]; letter-spacing: -0.02em; line-height: 1.05; }
 
-  .lead { @apply text-lg leading-relaxed text-foreground/85 md:text-xl; }
-  .on-sand .lead { @apply text-sand-foreground/80; }
+  .lead { @apply text-lg leading-relaxed text-muted-foreground md:text-xl; }
+
+  .rule { @apply border-t border-foreground/15; }
 
   .prose-legal { @apply max-w-prose text-base leading-relaxed text-foreground/85; }
-  .prose-legal h2 { @apply mb-4 mt-12 text-2xl text-foreground first:mt-0; }
+  .prose-legal h2 { @apply mb-4 mt-14 text-2xl text-foreground first:mt-0; }
   .prose-legal h3 { @apply mb-2 mt-8 text-lg text-foreground; }
   .prose-legal p { @apply mb-4; }
   .prose-legal ul { @apply mb-4 list-disc space-y-1 pl-5; }
-  .prose-legal a { @apply text-primary underline underline-offset-4 hover:no-underline; }
+  .prose-legal a { color: hsl(var(--accent-text)); @apply underline underline-offset-4 hover:no-underline; }
 
   .link-underline {
     @apply relative inline-flex items-center gap-2;
@@ -117,34 +164,44 @@
     background-size: 0% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
 
-  .noise::after {
+  .text-accent { color: hsl(var(--accent-text)); }
+
+  .grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.06;
-    mix-blend-mode: overlay;
+    opacity: 0.07;
+    mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 }
 
-/* Intro animations in pure CSS: they start at first paint (before JS), so the
-   headline is visible early (good LCP). Reduced motion collapses them (see base). */
 .cookie-ok #cookie-banner { display: none; }
 
-@keyframes intro-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-@keyframes intro-word { from { transform: translateY(105%); } to { transform: none; } }
-.intro-up { animation: intro-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--d, 0s); }
-.intro-word { display: inline-block; animation: intro-word 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--d, 0s); }
+/* Intro animations in pure CSS: start at first paint (before JS) → early LCP.
+   Reduced motion collapses them (see base). */
+@keyframes intro-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes intro-word { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes intro-scale { from { transform: scale(1.18); } to { transform: scale(1); } }
+@keyframes kenburns { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.16) translate3d(-1.5%, -1%, 0); } }
+@keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.intro-up { animation: intro-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--d, 0s); }
+.intro-word { display: inline-block; max-width: 100%; overflow-wrap: anywhere; animation: intro-word 1s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--d, 0s); }
+.intro-scale { animation: intro-scale 1.8s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: var(--d, 0s); }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
+  .stretch-wide { font-stretch: 125%; }
+  .stretch-normal { font-stretch: 100%; }
   .sr-only-focusable:not(:focus):not(:focus-within) {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
   }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 }

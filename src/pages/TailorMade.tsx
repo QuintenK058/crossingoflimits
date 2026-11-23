@@ -31,7 +31,7 @@ export default function TailorMade() {
   return (
     <>
       <Seo title={t.meta.tailorMade.title} description={t.meta.tailorMade.description} jsonLd={[breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/dune-road" imageAlt={c.imageAlt} crumbs={crumbs} />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/sahara-camp" imageAlt={c.imageAlt} crumbs={crumbs} />
 
       <section className="section" aria-labelledby="pillars-title">
         <div className="container">
@@ -39,7 +39,7 @@ export default function TailorMade() {
           <RevealGroup as="ul" className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map((p) => (
               <RevealItem as="li" key={p.title} className="bg-background p-8">
-                <p.icon className="size-7 text-primary" aria-hidden="true" />
+                <p.icon className="size-7 text-accent" aria-hidden="true" />
                 <h3 className="mt-6 font-display text-2xl">{p.title}</h3>
                 <p className="mt-3 leading-relaxed text-foreground/75">{p.text}</p>
               </RevealItem>
@@ -48,7 +48,7 @@ export default function TailorMade() {
         </div>
       </section>
 
-      <section className="on-sand bg-sand text-sand-foreground" aria-labelledby="wishes-title">
+      <section className="bg-sand" aria-labelledby="wishes-title">
         <div className="container section grid-12 items-center">
           <div className="col-span-4 md:col-span-6">
             <Reveal>
@@ -59,8 +59,8 @@ export default function TailorMade() {
             </Reveal>
             <RevealGroup as="ul" className="mt-8 space-y-3" stagger={0.06}>
               {Object.values(c.wishes).map((w) => (
-                <RevealItem as="li" key={w} className="flex gap-3 border-b border-sand-foreground/15 pb-3">
-                  <CircleCheck className="mt-0.5 size-5 shrink-0 text-primary-ink" aria-hidden="true" />
+                <RevealItem as="li" key={w} className="flex gap-3 border-b border-foreground/15 pb-3">
+                  <CircleCheck className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
                   <span>{w}</span>
                 </RevealItem>
               ))}
@@ -73,8 +73,8 @@ export default function TailorMade() {
           </div>
           <div className="col-span-4 md:col-span-6">
             <Reveal>
-              <ParallaxImage image="photos/group-ride" alt={t.toursPage.group.imageAlt} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-xl" />
-              <p className="mt-6 max-w-md leading-relaxed text-sand-foreground/80">{c.support}</p>
+              <ParallaxImage image="photos/hero-coast" alt={t.toursPage.group.imageAlt} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-xl" />
+              <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">{c.support}</p>
             </Reveal>
           </div>
         </div>

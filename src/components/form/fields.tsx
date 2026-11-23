@@ -22,7 +22,7 @@ export function Field({ id, label, error, hint, required, requiredLabel, childre
       <label htmlFor={id} className="block text-sm font-semibold">
         {label}
         {required && (
-          <span className="ml-1 text-primary" aria-hidden="true">
+          <span className="ml-1 text-accent" aria-hidden="true">
             *
           </span>
         )}
@@ -88,7 +88,7 @@ export const RadioCard = forwardRef<
       )}
     >
       <input ref={ref} type="radio" id={id} className="peer sr-only" {...p} />
-      {icon && <span className="text-primary">{icon}</span>}
+      {icon && <span className="text-accent">{icon}</span>}
       <span className="flex-1">
         <span className="block font-semibold">{title}</span>
         {text && <span className="mt-1 block text-sm text-foreground/75">{text}</span>}

@@ -1,5 +1,33 @@
 # Eindrapportage – nieuwe website Crossing of Limits
 
+## Update 23 november 2026 – remake (versie 2)
+
+Op verzoek opnieuw vormgegeven: "te veel zoals de oude, meer animaties, duidelijk en strak, andere beelden".
+
+- **Nieuwe look**: licht en editorial. Papierkleurige basis (#F3EEE5), inkt-zwarte typografie, amber alleen als
+  accent, donkere secties alleen voor beeld (CTA, cijfers, footer, menu). Nieuwe letters: Archivo (variabel, extra
+  breed voor koppen; eigen subset van 48 KB) met Instrument Serif-cursief als accent.
+- **Nieuwe beelden**: 18 nieuwe foto's gegenereerd met Higgsfield (≈ 13,5 credits van het budget van 15): per reis
+  een eigen hoofdfoto, plus sfeer (BBQ, kampvuur, bar, riad, volgbus, cockpit). De oude foto's en de oude video zijn
+  verwijderd. **Let op: het zijn AI-beelden.** Ze zijn bedoeld als sfeerbeeld, maar echte foto's van jullie reizen
+  blijven de beste vervanging. De beelden komen in 1344/1024 px binnen en zijn opgeschaald naar 1920/1600 px.
+- **Geen video meer**: op jouw keuze (alleen foto's) is de hero een fotomontage geworden: crossfade + langzame zoom,
+  voortgangsbalkjes, pauzeknop (WCAG 2.2.2) en een frame dat bij het scrollen naar volledige breedte groeit.
+- **Nieuwe animaties**: woord-voor-woord titel-reveals (CSS, vóór JS), marquee waarvan snelheid en richting met het
+  scrollen meegaan, een statement waarvan de woorden oplichten tijdens het scrollen, horizontaal scrollende
+  reizen (vastgezet op desktop, swipe op mobiel), reisvormen als grote lijst met een foto die de cursor volgt,
+  beeld-reveals met een "gordijn", "zo werkt het" als kaarten die over elkaar schuiven, magnetische knoppen,
+  een eigen cursor met label ("Bekijk", "Ontdek"), een gordijn-overgang tussen pagina's en een fullscreen menu
+  dat van boven inschuift. Alles uitgeschakeld bij `prefers-reduced-motion`.
+- **Kwaliteit**: build, lint en typecheck schoon. 32 Playwright-tests slagen, nu met tests voor de diavoorstelling
+  en de horizontale reizen; 0 dode links. Lighthouse mobiel (mediaan van 3): Performance 89–100,
+  Accessibility/Best Practices/SEO 100 op 9 pagina's. De homepage zit rond de 90: in de simulatie
+  telt Lighthouse het logo als LCP en het lettertype + de JS concurreren daarmee. De Engelse homepage scoorde 89 in
+  de laatste meting, net onder de grens. Zie `reports/lighthouse/summary.md`.
+
+---
+
+
 Opgeleverd: 20 november 2026
 
 ## 1. Wat er gebouwd is

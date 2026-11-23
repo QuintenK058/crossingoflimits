@@ -59,9 +59,9 @@ export const destinations: Destination[] = [
       { nl: "Snelle, vloeiende bochten", en: "Fast, flowing bends" },
     ],
     bestPeriod: { nl: "Oktober t/m mei", en: "October through May" },
-    image: "photos/spain-mountain",
+    image: "photos/pyrenees",
     imageAlt: { nl: "Bergweg in Noord-Spanje", en: "Mountain road in Northern Spain" },
-    secondaryImage: "photos/village-stop",
+    secondaryImage: "photos/white-village",
     secondaryImageAlt: {
       nl: "Motoren geparkeerd op een Spaans dorpsplein",
       en: "Motorcycles parked on a Spanish village square",
@@ -132,9 +132,9 @@ export const destinations: Destination[] = [
       { nl: "Woestijnwegen naar de Sahara", en: "Desert roads to the Sahara" },
     ],
     bestPeriod: { nl: "Oktober t/m mei", en: "October through May" },
-    image: "photos/morocco-desert",
+    image: "photos/atlas-pass",
     imageAlt: { nl: "Woestijnweg in Zuid-Marokko", en: "Desert road in Southern Morocco" },
-    secondaryImage: "photos/dune-road",
+    secondaryImage: "photos/sahara-camp",
     secondaryImageAlt: { nl: "Motorrijder op een lege woestijnweg", en: "Motorcyclist on an empty desert road" },
     regions: [
       {

@@ -23,7 +23,7 @@ export function Breadcrumbs({ items, className }: { items: Crumb[]; className?: 
                 </span>
               ) : (
                 <>
-                  <LocalLink to={c.path} className="hover:text-primary">
+                  <LocalLink to={c.path} className="hover:text-accent">
                     {c.name}
                   </LocalLink>
                   <ChevronRight className="size-3 opacity-60" aria-hidden="true" />

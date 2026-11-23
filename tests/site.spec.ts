@@ -92,35 +92,35 @@ test("skip link moves focus to main content", async ({ page, isMobile }) => {
   await expect(skip).toBeVisible();
 });
 
-test("hero video: plays with motion, stays on poster with reduced motion", async ({ browser }) => {
+test("hero slideshow: advances, can be paused, static with reduced motion", async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: "no-preference", viewport: { width: 1280, height: 800 } });
   const page = await ctx.newPage();
-  const videoReq = page.waitForRequest(/hero-1280\.(webm|mp4)/);
+  await page.addInitScript(() => localStorage.setItem("col-cookie-notice", "1"));
   await page.goto("/");
-  await videoReq;
-  await expect.poll(() => page.locator("video").evaluate((v: HTMLVideoElement) => !v.paused), { timeout: 15000 }).toBe(true);
-  // pauses when scrolled out of view
-  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
-  await expect.poll(() => page.locator("video").evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+  const current = page.locator('button[aria-current="true"]');
+  await expect(current).toHaveAttribute("aria-label", /Foto 1 van 3/);
+  await expect(current).toHaveAttribute("aria-label", /Foto 2 van 3/, { timeout: 9000 });
+  await page.getByRole("button", { name: "Diavoorstelling pauzeren" }).click();
+  await expect(page.getByRole("button", { name: "Diavoorstelling afspelen" })).toBeVisible();
+  await page.waitForTimeout(6500);
+  await expect(current).toHaveAttribute("aria-label", /Foto 2 van 3/);
+  await page.getByRole("button", { name: /Foto 3 van 3/ }).click();
+  await expect(page.locator('button[aria-current="true"]')).toHaveAttribute("aria-label", /Foto 3 van 3/);
   await ctx.close();
 
   const reduced = await browser.newContext({ reducedMotion: "reduce" });
   const p2 = await reduced.newPage();
-  const requested: string[] = [];
-  p2.on("request", (r) => /\/media\/video\/hero-\d+\.(mp4|webm)/.test(r.url()) && requested.push(r.url()));
   await p2.goto("/");
-  await p2.waitForLoadState("networkidle");
-  expect(requested).toEqual([]);
-  await expect(p2.locator("video source")).toHaveCount(0);
-  await expect(p2.getByAltText(/Twee motorrijders op een bochtige bergweg/)).toBeVisible();
+  await expect(p2.getByRole("button", { name: "Diavoorstelling afspelen" })).toBeVisible();
+  await p2.waitForTimeout(6500);
+  await expect(p2.locator('button[aria-current="true"]')).toHaveAttribute("aria-label", /Foto 1 van 3/);
   await reduced.close();
 });
 
-test("mobile loads the lighter 720p video", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "mobile only");
-  const req = page.waitForRequest(/hero-720\.(webm|mp4)/);
+test("homepage: horizontal trips list links to every trip", async ({ page }) => {
   await page.goto("/");
-  await req;
+  const links = page.locator("#trips-title").locator("xpath=ancestor::section").locator('a[href^="/reizen/"]');
+  await expect(links).toHaveCount(7);
 });
 
 test("reduced motion: content is visible without animation", async ({ browser }) => {

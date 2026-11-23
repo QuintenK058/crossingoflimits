@@ -30,10 +30,10 @@ const ROAD = buildPath();
 
 type MomentKey = "morning" | "ride" | "stops" | "arrival" | "dinner" | "fire";
 const MOMENTS: { key: MomentKey; image: MediaKey }[] = [
-  { key: "morning", image: "photos/spain-mountain" },
-  { key: "ride", image: "photos/riders-mountain" },
-  { key: "stops", image: "photos/village-stop" },
-  { key: "arrival", image: "photos/accommodation" },
+  { key: "morning", image: "photos/pyrenees" },
+  { key: "ride", image: "photos/sierra-nevada" },
+  { key: "stops", image: "photos/white-village" },
+  { key: "arrival", image: "photos/riad" },
   { key: "dinner", image: "photos/bbq" },
   { key: "fire", image: "photos/campfire" },
 ];
@@ -74,12 +74,12 @@ function RouteLine({ progress, active, label, times }: { progress: ReturnType<ty
         </svg>
         <ol className="mt-1 hidden grid-cols-6 text-center text-[11px] font-semibold uppercase tracking-wider md:grid" aria-hidden="true">
           {times.map((time, i) => (
-            <li key={time} className={cn("transition-colors duration-500", i <= active ? "text-primary" : "text-foreground/60")}>
+            <li key={time} className={cn("transition-colors duration-500", i <= active ? "text-accent" : "text-foreground/60")}>
               {time}
             </li>
           ))}
         </ol>
-        <p className="mt-1 text-center text-xs font-semibold uppercase tracking-wider text-primary md:hidden" aria-hidden="true">
+        <p className="mt-1 text-center text-xs font-semibold uppercase tracking-wider text-accent md:hidden" aria-hidden="true">
           {times[Math.max(0, active)]}
         </p>
       </div>
@@ -112,7 +112,7 @@ export default function Experience() {
   return (
     <>
       <Seo title={t.meta.experience.title} description={t.meta.experience.description} jsonLd={[breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/riders-mountain" imageAlt={c.imageAlt} crumbs={crumbs} size="lg" />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/sierra-nevada" imageAlt={c.imageAlt} crumbs={crumbs} size="lg" />
 
       <section aria-labelledby="day-title" className="pt-24 md:pt-32">
         <div className="container">
@@ -137,7 +137,7 @@ export default function Experience() {
                   </div>
                   <div className={cn("col-span-4 md:col-span-5", i % 2 ? "md:col-start-1 md:row-start-1" : "md:col-start-8")}>
                     <Reveal>
-                      <p className="flex items-center gap-3 font-display text-sm uppercase tracking-eyebrow text-primary">
+                      <p className="flex items-center gap-3 font-display text-sm uppercase tracking-eyebrow text-accent">
                         <span className="grid size-9 place-items-center rounded-full border border-primary text-xs">{String(i + 1).padStart(2, "0")}</span>
                         {copy.time}
                       </p>
@@ -152,7 +152,7 @@ export default function Experience() {
         </div>
       </section>
 
-      <section className="on-sand bg-sand text-sand-foreground" aria-labelledby="stays-title">
+      <section className="bg-sand" aria-labelledby="stays-title">
         <div className="container section grid-12 items-center">
           <div className="col-span-4 md:col-span-5">
             <Reveal>
@@ -165,7 +165,7 @@ export default function Experience() {
           </div>
           <div className="col-span-4 md:col-span-7">
             <Reveal>
-              <ParallaxImage image="photos/accommodation" alt={c.staysImageAlt} sizes="(min-width: 768px) 58vw, 100vw" className="aspect-[16/10] rounded-xl" />
+              <ParallaxImage image="photos/riad" alt={c.staysImageAlt} sizes="(min-width: 768px) 58vw, 100vw" className="aspect-[16/10] rounded-xl" />
             </Reveal>
           </div>
         </div>

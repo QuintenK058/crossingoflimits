@@ -82,7 +82,7 @@ export default function Contact() {
   return (
     <>
       <Seo title={t.meta.contact.title} description={t.meta.contact.description} jsonLd={[travelAgencySchema(lang), breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/group-ride" imageAlt={c.imageAlt} crumbs={crumbs} />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/hero-coast" imageAlt={c.imageAlt} crumbs={crumbs} />
 
       <section className="pb-24 md:pb-32">
         <div className="container grid-12">
@@ -107,7 +107,7 @@ export default function Contact() {
                 ) : (
                   <div className="flex items-center gap-5 rounded-xl border border-border p-5">
                     <span className="grid size-12 shrink-0 place-items-center rounded-full border border-border">
-                      <d.icon className="size-5 text-primary" aria-hidden="true" />
+                      <d.icon className="size-5 text-accent" aria-hidden="true" />
                     </span>
                     <span>
                       <span className="block text-xs font-semibold uppercase tracking-eyebrow text-foreground/70">{d.label}</span>
@@ -155,7 +155,7 @@ export default function Contact() {
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <p className="text-sm text-foreground/75">
                       {c.planHint}{" "}
-                      <LocalLink to={pathFor("plan", lang)} className="font-semibold text-primary underline underline-offset-4">
+                      <LocalLink to={pathFor("plan", lang)} className="font-semibold text-accent underline underline-offset-4">
                         {c.planHintLink}
                       </LocalLink>
                       .

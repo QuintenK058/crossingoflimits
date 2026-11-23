@@ -7,6 +7,7 @@ import { pages } from "@/pages/registry";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { Cursor } from "@/components/layout/Cursor";
 import { getLenis, scrollToTop, SmoothScroll } from "@/components/layout/SmoothScroll";
 import { isHydrated, markHydrated, prefersReducedMotion } from "@/lib/motion";
 
@@ -97,10 +98,22 @@ function SiteShell() {
           id="main"
           tabIndex={-1}
           className="outline-none"
-          initial={ok ? { opacity: 0, y: 16 } : false}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }}
-          exit={ok ? { opacity: 0, y: -10, transition: { duration: 0.22, ease: "easeIn" } } : undefined}
+          initial={ok ? "enter" : false}
+          animate="idle"
+          exit={ok ? "leave" : undefined}
+          variants={{ enter: {}, idle: {}, leave: {} }}
         >
+          {ok && (
+            <m.div
+              aria-hidden="true"
+              className="pointer-events-none fixed inset-0 z-[85] bg-[hsl(var(--ink))]"
+              variants={{
+                enter: { scaleY: 1, originY: 0 },
+                idle: { scaleY: 0, originY: 0, transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1], delay: 0.05 } },
+                leave: { scaleY: 1, originY: 1, transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1] } },
+              }}
+            />
+          )}
           <Suspense fallback={<div className="min-h-[100svh]" aria-busy="true" />}>
             <SiteRoutes location={location} />
           </Suspense>
@@ -108,6 +121,7 @@ function SiteShell() {
       </AnimatePresence>
       <Footer />
       <CookieBanner />
+      <Cursor />
     </>
   );
 }

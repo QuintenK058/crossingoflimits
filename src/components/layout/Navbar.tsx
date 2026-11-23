@@ -44,18 +44,10 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50 transition-[transform,background-color,box-shadow] duration-500 ease-out motion-reduce:transition-none",
         hidden && !menuOpen ? "-translate-y-full" : "translate-y-0",
         scrolled
-          ? "bg-background/80 shadow-[0_1px_0_hsl(var(--border))] backdrop-blur-lg supports-[backdrop-filter]:bg-background/65"
+          ? "bg-background/85 shadow-[0_1px_0_hsl(var(--border))] backdrop-blur-xl supports-[backdrop-filter]:bg-background/70"
           : "bg-transparent",
       )}
     >
-      {/* soft top gradient keeps white text readable over bright video frames */}
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-0 -bottom-10 bg-gradient-to-b from-black/55 to-transparent transition-opacity duration-500",
-          scrolled ? "opacity-0" : "opacity-100",
-        )}
-      />
       <div className="container relative flex h-[var(--nav-h)] items-center justify-between gap-6">
         <LocalLink to={pathFor("home", lang)} aria-label={t.nav.logoLabel} className="h-12 shrink-0 md:h-14">
           <Logo priority />
@@ -69,8 +61,8 @@ export function Navbar() {
                   to={item.href}
                   className={({ isActive }) =>
                     cn(
-                      "relative rounded-full px-3 py-2 text-sm font-medium text-foreground/90 transition-colors hover:text-foreground",
-                      "after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
+                      "relative rounded-full px-3 py-2 text-[13px] font-medium text-foreground/80 transition-colors [font-stretch:105%] hover:text-foreground",
+                      "after:absolute after:inset-x-3 after:bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100",
                       (isActive || pathname.startsWith(item.href + "/")) && "text-foreground after:scale-x-100",
                     )
                   }
@@ -84,7 +76,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitch className="hidden sm:flex" />
-          <ButtonLink to={planPath} size="sm" className="hidden md:inline-flex">
+          <ButtonLink to={planPath} size="sm" variant="accent" className="hidden md:inline-flex">
             {t.common.planCta}
           </ButtonLink>
           <button
@@ -94,7 +86,7 @@ export function Navbar() {
               setMenuOpen(true);
             }}
             onPointerEnter={() => setMenuLoaded(true)}
-            className="grid size-11 place-items-center rounded-full border border-foreground/30 transition-colors hover:bg-foreground hover:text-background xl:hidden"
+            className="grid size-11 place-items-center rounded-full bg-foreground text-background transition-colors hover:bg-primary hover:text-[hsl(var(--ink))] xl:hidden"
             aria-label={t.nav.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"

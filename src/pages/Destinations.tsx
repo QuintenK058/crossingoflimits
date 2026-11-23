@@ -22,7 +22,7 @@ export default function Destinations() {
   return (
     <>
       <Seo title={t.meta.destinations.title} description={t.meta.destinations.description} jsonLd={[breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/sunset" imageAlt={t.home.closing.imageAlt} crumbs={crumbs}>
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/hero-andalusia" imageAlt={t.home.closing.imageAlt} crumbs={crumbs}>
         <StoNotice className="max-w-xl" />
       </PageHero>
 
@@ -76,22 +76,22 @@ export default function Destinations() {
         </section>
       ))}
 
-      <section className="on-sand bg-sand text-sand-foreground" aria-labelledby="glance-title">
+      <section className="bg-sand" aria-labelledby="glance-title">
         <div className="container section">
           <SectionHeading eyebrow={c.glanceEyebrow} title={c.glanceTitle} lead={c.glanceLead} id="glance-title" />
-          <RevealGroup as="dl" className="mt-12 grid gap-px overflow-hidden rounded-xl border border-sand-foreground/15 bg-sand-foreground/15 sm:grid-cols-2 lg:grid-cols-3">
+          <RevealGroup as="dl" className="mt-12 grid gap-px overflow-hidden rounded-xl border border-foreground/15 bg-foreground/15 sm:grid-cols-2 lg:grid-cols-3">
             {glance.map((g) => (
               <RevealItem key={g.label.nl} className="bg-sand p-6 md:p-8">
-                <dt className="text-xs font-semibold uppercase tracking-eyebrow text-primary-ink">{l(g.label)}</dt>
+                <dt className="text-xs font-semibold uppercase tracking-eyebrow text-accent">{l(g.label)}</dt>
                 <dd className="mt-2 font-display text-2xl">{l(g.value)}</dd>
               </RevealItem>
             ))}
           </RevealGroup>
-          <p className="mt-8 max-w-2xl text-sm text-sand-foreground/75">{c.glanceNote}</p>
+          <p className="mt-8 max-w-2xl text-sm text-muted-foreground">{c.glanceNote}</p>
         </div>
       </section>
 
-      <CtaBand title={t.home.closing.title} text={t.home.closing.text} image="photos/hero-road" imageAlt={t.toursPage.group.imageAlt} />
+      <CtaBand title={t.home.closing.title} text={t.home.closing.text} image="photos/hero-atlas" imageAlt={t.toursPage.group.imageAlt} />
     </>
   );
 }

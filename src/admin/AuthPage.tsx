@@ -67,7 +67,7 @@ function SignIn() {
             )}
           </Button>
         </form>
-        <LocalLink to="/" className="mt-6 inline-block text-sm text-foreground/70 underline underline-offset-4 hover:text-primary">
+        <LocalLink to="/" className="mt-6 inline-block text-sm text-foreground/70 underline underline-offset-4 hover:text-accent">
           {a.backToSite}
         </LocalLink>
       </div>

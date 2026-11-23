@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils";
 import { usePreloadImage } from "@/seo/head";
 import { srcSet } from "@/components/ui/Picture";
 import { ParallaxImage } from "@/components/ui/Parallax";
+import { SplitWords } from "@/components/ui/SplitWords";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
 interface PageHeroProps {
   eyebrow?: string;
-  title: ReactNode;
+  title: string;
   lead?: ReactNode;
   image: MediaKey;
   imageAlt: string;
@@ -17,46 +18,48 @@ interface PageHeroProps {
   size?: "md" | "lg";
 }
 
-/** Dark image header used on every inner page (navbar sits transparent on top). */
+const d = (delay: number) => ({ "--d": `${delay}s` }) as CSSProperties;
+
+/** Editorial page header: big split-word title on paper, wide image below. */
 export function PageHero({ eyebrow, title, lead, image, imageAlt, crumbs, children, size = "md" }: PageHeroProps) {
   usePreloadImage({ imagesrcset: srcSet(image, "avif"), imagesizes: "100vw", type: "image/avif" });
-  const d = (delay: number) => ({ "--d": `${delay}s` }) as CSSProperties;
   return (
-    <section
-      className={cn(
-        "relative isolate flex items-end overflow-hidden",
-        size === "lg" ? "min-h-[78svh] md:min-h-[86svh]" : "min-h-[62svh] md:min-h-[70svh]",
-      )}
-    >
-      <ParallaxImage
-        image={image}
-        alt={imageAlt}
-        priority
-        sizes="100vw"
-        strength={0.14}
-        className="absolute inset-0 -z-10"
-        overlay="bg-gradient-to-t from-background via-background/70 to-background/45"
-      />
-      <div className="container pb-14 pt-[calc(var(--nav-h)+3rem)] md:pb-20">
-        {crumbs && <Breadcrumbs items={crumbs} className="mb-6" />}
-        {eyebrow && (
-          <p className="eyebrow intro-up mb-4" style={d(0.05)}>
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="heading-1 intro-up max-w-4xl text-balance" style={d(0.12)}>
-          {title}
-        </h1>
-        {lead && (
-          <div className="lead intro-up mt-6 max-w-2xl text-pretty" style={d(0.22)}>
-            {lead}
+    <section className="relative pt-[calc(var(--nav-h)+2rem)] md:pt-[calc(var(--nav-h)+3.5rem)]">
+      <div className="container">
+        {crumbs && <Breadcrumbs items={crumbs} className="intro-up mb-10" />}
+        <div className="grid-12 items-end gap-y-8">
+          <div className="col-span-4 md:col-span-8">
+            {eyebrow && (
+              <p className="eyebrow intro-up mb-6" style={d(0.05)}>
+                {eyebrow}
+              </p>
+            )}
+            <h1 className={cn("text-balance", size === "lg" ? "heading-1 md:text-[clamp(3rem,7.4vw,7rem)]" : "heading-1")}>
+              <SplitWords text={title} delay={0.1} />
+            </h1>
           </div>
-        )}
-        {children && (
-          <div className="intro-up mt-8" style={d(0.32)}>
-            {children}
+          {(lead || children) && (
+            <div className="col-span-4 md:col-span-4 md:pb-2">
+              {lead && (
+                <div className="lead intro-up text-pretty" style={d(0.35)}>
+                  {lead}
+                </div>
+              )}
+              {children && (
+                <div className="intro-up mt-8" style={d(0.45)}>
+                  {children}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="container mt-12 md:mt-16">
+        <div className={cn("intro-up overflow-hidden rounded-[var(--radius)]", size === "lg" ? "aspect-[4/3] md:aspect-[21/9]" : "aspect-[16/10] md:aspect-[24/9]")} style={d(0.2)}>
+          <div className="intro-scale h-full w-full" style={d(0.2)}>
+            <ParallaxImage image={image} alt={imageAlt} priority sizes="(min-width: 1320px) 1256px, 100vw" strength={0.16} className="h-full w-full" />
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

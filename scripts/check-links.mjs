@@ -55,8 +55,6 @@ while (queue.length) {
     note(s, path);
   }
 }
-// Hero video sources are added client-side
-for (const v of ["hero-720.mp4", "hero-720.webm", "hero-1280.mp4", "hero-1280.webm"]) assets.add(`/media/video/${v}`);
 
 for (const a of assets) {
   const res = await fetch(BASE + a, { method: "HEAD" });

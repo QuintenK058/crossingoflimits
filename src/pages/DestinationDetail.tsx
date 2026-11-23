@@ -57,7 +57,7 @@ export default function DestinationDetail() {
             <div className="mt-10 grid gap-8 sm:grid-cols-2">
               <Reveal>
                 <h3 className="flex items-center gap-2 font-display text-xl">
-                  <Route className="size-5 text-primary" aria-hidden="true" /> {c.roads}
+                  <Route className="size-5 text-accent" aria-hidden="true" /> {c.roads}
                 </h3>
                 <ul className="mt-4 space-y-2 text-foreground/80">
                   {d.roads.map((r) => (
@@ -69,9 +69,9 @@ export default function DestinationDetail() {
               </Reveal>
               <Reveal delay={0.1}>
                 <h3 className="flex items-center gap-2 font-display text-xl">
-                  <CalendarDays className="size-5 text-primary" aria-hidden="true" /> {c.bestPeriod}
+                  <CalendarDays className="size-5 text-accent" aria-hidden="true" /> {c.bestPeriod}
                 </h3>
-                <p className="mt-4 font-display text-3xl text-primary">{l(d.bestPeriod)}</p>
+                <p className="mt-4 font-display text-3xl text-accent">{l(d.bestPeriod)}</p>
               </Reveal>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function DestinationDetail() {
         </div>
       </section>
 
-      <section className="on-sand bg-sand text-sand-foreground" aria-labelledby="regions-title">
+      <section className="bg-sand" aria-labelledby="regions-title">
         <div className="container section">
           <SectionHeading eyebrow={c.regions} title={t.destinationsPage.regionsTitle} id="regions-title" />
           <RevealGroup as="ul" className={`mt-12 grid gap-6 ${d.regions.length === 3 ? "lg:grid-cols-3" : "md:grid-cols-2"}`}>
@@ -91,11 +91,11 @@ export default function DestinationDetail() {
               <RevealItem as="li" key={r.name.nl} className="flex flex-col rounded-xl bg-sand-deep/60 p-6 md:p-8">
                 <p className="eyebrow">{l(r.name)}</p>
                 <h3 className="mt-3 font-display text-2xl">{l(r.title)}</h3>
-                <p className="mt-3 flex-1 leading-relaxed text-sand-foreground/80">{l(r.text)}</p>
-                <h4 className="mt-6 text-xs font-semibold uppercase tracking-eyebrow text-sand-foreground/70">{c.highlights}</h4>
+                <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{l(r.text)}</p>
+                <h4 className="mt-6 text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground">{c.highlights}</h4>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {r.highlights.map((hl) => (
-                    <li key={hl.nl} className="rounded-full border border-sand-foreground/25 px-3 py-1 text-sm">
+                    <li key={hl.nl} className="rounded-full border border-foreground/25 px-3 py-1 text-sm">
                       {l(hl)}
                     </li>
                   ))}
@@ -126,14 +126,14 @@ export default function DestinationDetail() {
       <section className="relative isolate overflow-hidden" aria-label={fmt(c.otherDestination, { name: l(other.name) })}>
         <ParallaxImage image={other.image} alt="" sizes="100vw" className="absolute inset-0 -z-10" overlay="bg-background/70" />
         <div className="container py-20 md:py-28">
-          <LocalLink to={destinationPath(other.id, lang)} className="group inline-flex items-center gap-4 font-display text-[clamp(2rem,5vw,4rem)] uppercase hover:text-primary">
+          <LocalLink to={destinationPath(other.id, lang)} className="group inline-flex items-center gap-4 font-display text-[clamp(2rem,5vw,4rem)] uppercase hover:text-accent">
             {fmt(c.otherDestination, { name: l(other.name) })}
             <ArrowRight className="size-8 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true" />
           </LocalLink>
         </div>
       </section>
 
-      <CtaBand title={t.home.closing.title} text={t.home.closing.text} image="photos/sunset" imageAlt={t.home.closing.imageAlt} />
+      <CtaBand title={t.home.closing.title} text={t.home.closing.text} image="photos/hero-andalusia" imageAlt={t.home.closing.imageAlt} />
     </>
   );
 }

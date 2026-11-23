@@ -25,7 +25,7 @@ export const AccordionTrigger = forwardRef<
         <AccordionPrimitive.Trigger
           ref={ref}
           className={cn(
-            "group flex w-full items-center justify-between gap-6 py-5 text-left text-base font-semibold leading-snug transition-colors hover:text-primary md:text-lg [&[data-state=open]>span>svg]:rotate-45",
+            "group flex w-full items-center justify-between gap-6 py-5 text-left text-base font-semibold leading-snug transition-colors hover:text-accent md:text-lg [&[data-state=open]>span>svg]:rotate-45",
             className,
           )}
           {...props}

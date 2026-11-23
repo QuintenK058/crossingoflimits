@@ -40,11 +40,11 @@ export default function Plan() {
   return (
     <>
       <Seo title={t.meta.plan.title} description={t.meta.plan.description} jsonLd={[breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/dune-road" imageAlt={t.tailorMade.imageAlt} crumbs={crumbs}>
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/sahara-camp" imageAlt={t.tailorMade.imageAlt} crumbs={crumbs}>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {[c.usp1, c.usp2, c.usp3].map((u) => (
             <li key={u} className="flex items-center gap-2">
-              <Check className="size-4 text-primary" aria-hidden="true" /> {u}
+              <Check className="size-4 text-accent" aria-hidden="true" /> {u}
             </li>
           ))}
         </ul>
@@ -75,18 +75,18 @@ export default function Plan() {
                 <h2 className="font-display text-xl">{t.nav.contact}</h2>
                 <ul className="mt-4 space-y-3 text-sm">
                   <li>
-                    <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-primary">
-                      <Mail className="size-4 text-primary" aria-hidden="true" /> {site.email}
+                    <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 hover:text-accent">
+                      <Mail className="size-4 text-accent" aria-hidden="true" /> {site.email}
                     </a>
                   </li>
                   <li>
-                    <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-primary">
-                      <Phone className="size-4 text-primary" aria-hidden="true" /> {site.phoneDisplay}
+                    <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-accent">
+                      <Phone className="size-4 text-accent" aria-hidden="true" /> {site.phoneDisplay}
                     </a>
                   </li>
                   <li>
-                    <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-primary">
-                      <MessageCircle className="size-4 text-primary" aria-hidden="true" /> {t.footer.whatsapp}
+                    <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
+                      <MessageCircle className="size-4 text-accent" aria-hidden="true" /> {t.footer.whatsapp}
                       <span className="sr-only">{t.common.opensInNewTab}</span>
                     </a>
                   </li>

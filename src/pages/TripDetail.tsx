@@ -104,7 +104,7 @@ function TripView({ trip }: { trip: Trip }) {
       </PageHero>
 
       {/* Key facts */}
-      <section aria-labelledby="facts-title" className="border-y border-border bg-[#0f0d0c]">
+      <section aria-labelledby="facts-title" className="border-y border-border bg-sand">
         <h2 id="facts-title" className="sr-only">
           {t.trip.keyFacts}
         </h2>
@@ -154,7 +154,7 @@ function TripView({ trip }: { trip: Trip }) {
                       <AccordionItem key={d.day} value={d.day}>
                         <AccordionTrigger>
                           <span className="flex items-baseline gap-4">
-                            <span className="w-24 shrink-0 font-display text-sm uppercase tracking-wider text-primary">
+                            <span className="w-24 shrink-0 font-display text-sm uppercase tracking-wider text-accent">
                               {d.variant ? fmt(t.trip.variantLabel, { days: d.day }) : fmt(t.trip.dayLabel, { day: d.day.replace("-", "–") })}
                             </span>
                             <span>{l(d.title)}</span>
@@ -178,7 +178,7 @@ function TripView({ trip }: { trip: Trip }) {
                 <ul className="mt-6 space-y-3">
                   {trip.included.map((i) => (
                     <li key={i.nl} className="flex gap-3">
-                      <Check className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+                      <Check className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
                       {l(i)}
                     </li>
                   ))}
@@ -223,7 +223,7 @@ function TripView({ trip }: { trip: Trip }) {
                 {t.trip.bookingBoxTitle}
               </h2>
               <p className="mt-4 text-sm text-foreground/75">{t.common.from}</p>
-              <p className="font-display text-5xl text-primary">{price ?? t.common.onRequest}</p>
+              <p className="font-display text-5xl text-accent">{price ?? t.common.onRequest}</p>
               <p className="mt-1 text-sm text-foreground/75">{l(trip.priceNote)}</p>
               <p className="mt-5 text-sm">
                 <span className="text-foreground/70">{t.trip.forms}: </span>
@@ -239,7 +239,7 @@ function TripView({ trip }: { trip: Trip }) {
         </div>
       </div>
 
-      <section className="border-t border-border bg-[#0f0d0c]" aria-labelledby="other-title">
+      <section className="border-t border-border bg-sand" aria-labelledby="other-title">
         <div className="container section">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="other-title" className="heading-2">

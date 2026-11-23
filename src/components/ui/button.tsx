@@ -14,18 +14,22 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground before:bg-foreground",
+        /* ink button – fills amber on hover */
+        primary:
+          "bg-foreground text-background before:bg-primary hover:text-[hsl(var(--ink))] focus-visible:text-[hsl(var(--ink))]",
+        /* amber button – fills ink on hover (on dark backgrounds it fills paper) */
+        accent: "bg-primary text-[hsl(var(--ink))] before:bg-foreground hover:text-background focus-visible:text-background",
         outline:
-          "border border-foreground/60 text-foreground before:bg-foreground hover:text-background focus-visible:text-background",
+          "border border-foreground/40 text-foreground before:bg-foreground hover:text-background focus-visible:text-background",
         ghost: "text-foreground before:bg-foreground/10",
-        dark: "bg-background text-foreground before:bg-primary hover:text-primary-foreground focus-visible:text-primary-foreground",
+        dark: "bg-[hsl(var(--ink))] text-[hsl(var(--paper))] before:bg-primary hover:text-[hsl(var(--ink))]",
         sandOutline:
-          "border border-sand-foreground/70 text-sand-foreground before:bg-sand-foreground hover:text-sand focus-visible:text-sand",
+          "border border-foreground/40 text-foreground before:bg-foreground hover:text-background focus-visible:text-background",
       },
       size: {
-        sm: "min-h-10 px-4 py-2 text-sm",
+        sm: "min-h-10 px-5 py-2 text-sm",
         md: "min-h-12 px-6 py-3 text-sm",
-        lg: "min-h-14 px-7 py-3.5 text-base",
+        lg: "min-h-14 px-8 py-3.5 text-base",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },

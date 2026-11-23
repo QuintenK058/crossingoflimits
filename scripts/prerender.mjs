@@ -22,10 +22,7 @@ if (cssLink) {
 
 // Preload the two variable fonts (latin subset) used above the fold.
 const assets = await readdir(path.join(DIST, "assets"));
-const fontPreloads = assets
-  .filter((f) => /^oswald-latin-wght-normal.*\.woff2$/.test(f))
-  .map((f) => `<link rel="preload" href="/assets/${f}" as="font" type="font/woff2" crossorigin>`)
-  .join("\n    ");
+const fontPreloads = `<link rel="preload" href="/fonts/archivo-var-subset.woff2" as="font" type="font/woff2" crossorigin>`;
 
 const noscript = `<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>`;
 

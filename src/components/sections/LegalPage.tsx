@@ -65,7 +65,7 @@ export function LegalPage({
   title,
   description,
   eyebrow,
-  image = "photos/sunset",
+  image = "photos/hero-andalusia",
   aside,
 }: {
   routeKey: RouteKey;
@@ -96,8 +96,8 @@ export function LegalPage({
               <ol className="mt-4 space-y-2 text-sm">
                 {doc.sections.map((s, i) => (
                   <li key={s.id}>
-                    <a href={`#${s.id}`} className="flex gap-2 text-foreground/80 hover:text-primary">
-                      <span className="text-primary">{i + 1}.</span> {l(s.title)}
+                    <a href={`#${s.id}`} className="flex gap-2 text-foreground/80 hover:text-accent">
+                      <span className="text-accent">{i + 1}.</span> {l(s.title)}
                     </a>
                   </li>
                 ))}
@@ -109,7 +109,7 @@ export function LegalPage({
             {doc.sections.map((s, i) => (
               <Fragment key={s.id}>
                 <h2 id={s.id} className="scroll-mt-28">
-                  <span className="text-primary">{i + 1}.</span> {l(s.title)}
+                  <span className="text-accent">{i + 1}.</span> {l(s.title)}
                 </h2>
                 {s.body.map((b, j) => (
                   <Block key={j} text={l(b)} />

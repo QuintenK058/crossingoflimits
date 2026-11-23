@@ -20,9 +20,9 @@ export default function Faq() {
   return (
     <>
       <Seo title={t.meta.faq.title} description={t.meta.faq.description} jsonLd={[faqSchema(allFaqItems, lang), breadcrumbSchema(crumbs)]} />
-      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/village-stop" imageAlt={t.experience.stopsImageAlt} crumbs={crumbs} />
+      <PageHero eyebrow={c.eyebrow} title={c.title} lead={c.lead} image="photos/white-village" imageAlt={t.experience.stopsImageAlt} crumbs={crumbs} />
 
-      <div className="on-sand bg-sand text-sand-foreground">
+      <div className="bg-sand">
         <div className="container section grid-12">
           <nav aria-label={c.categories} className="col-span-4 md:col-span-4 lg:col-span-3">
             <div className="md:sticky md:top-[calc(var(--nav-h)+2rem)]">
@@ -32,7 +32,7 @@ export default function Faq() {
                   <li key={cat.id}>
                     <a
                       href={`#${cat.id}`}
-                      className="inline-block rounded-full border border-sand-foreground/20 px-4 py-2 text-sm font-medium transition-colors hover:border-sand-foreground hover:bg-sand-foreground hover:text-sand md:border-transparent md:px-3"
+                      className="inline-block rounded-full border border-foreground/15 px-4 py-2 text-sm font-medium transition-colors hover:border-foreground hover:bg-foreground hover:text-background md:border-transparent md:px-3"
                     >
                       {l(cat.title)}
                     </a>
@@ -45,28 +45,28 @@ export default function Faq() {
             {faq.map((cat) => (
               <Reveal as="section" key={cat.id} id={cat.id} className="scroll-mt-28">
                 <h2 className="heading-3">{l(cat.title)}</h2>
-                <Accordion type="multiple" className="mt-4 border-t border-sand-foreground/15">
+                <Accordion type="multiple" className="mt-4 border-t border-foreground/15">
                   {cat.items.map((item) => (
-                    <AccordionItem key={item.id} value={item.id} className="border-sand-foreground/15">
-                      <AccordionTrigger className="hover:text-primary-ink">{l(item.q)}</AccordionTrigger>
+                    <AccordionItem key={item.id} value={item.id} className="border-foreground/15">
+                      <AccordionTrigger className="hover:text-accent">{l(item.q)}</AccordionTrigger>
                       <AccordionContent>{l(item.a)}</AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
               </Reveal>
             ))}
-            <Reveal className="rounded-xl bg-sand-foreground p-8 text-sand md:p-10">
-              <h2 className="font-display text-3xl">{c.stillQuestion}</h2>
-              <p className="mt-3 text-sand/80">{c.stillQuestionText}</p>
+            <Reveal className="theme-dark rounded-[var(--radius)] bg-background p-8 text-foreground md:p-12">
+              <h2 className="heading-3">{c.stillQuestion}</h2>
+              <p className="mt-3 text-muted-foreground">{c.stillQuestionText}</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <ButtonLink to={pathFor("contact", lang)}>
+                <ButtonLink to={pathFor("contact", lang)} variant="accent">
                   {c.contactCta} <ArrowRight aria-hidden="true" />
                 </ButtonLink>
                 <a
                   href={site.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center gap-2 rounded-full border border-sand/50 px-6 text-sm font-semibold transition-colors hover:bg-sand hover:text-sand-foreground"
+                  className="inline-flex h-12 items-center gap-2 rounded-full border border-foreground/40 px-6 text-sm font-semibold transition-colors hover:bg-foreground hover:text-background"
                 >
                   <MessageCircle className="size-4" aria-hidden="true" /> {t.footer.whatsapp}
                   <span className="sr-only">{t.common.opensInNewTab}</span>

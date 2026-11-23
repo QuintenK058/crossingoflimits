@@ -25,7 +25,7 @@ export function ToursOverview({ form }: Props) {
   const copy = isGroup ? t.toursPage.group : t.toursPage.individual;
   const meta = isGroup ? t.meta.groupTours : t.meta.individualTours;
   const key: RouteKey = isGroup ? "groupTours" : "individualTours";
-  const image: MediaKey = isGroup ? "photos/hero-road" : "photos/coast";
+  const image: MediaKey = isGroup ? "photos/hero-atlas" : "photos/hero-coast";
   const crumbs = [
     { name: t.common.home, path: pathFor("home", lang) },
     { name: copy.title, path: pathFor(key, lang) },
@@ -37,17 +37,17 @@ export function ToursOverview({ form }: Props) {
       <Seo title={meta.title} description={meta.description} jsonLd={[breadcrumbSchema(crumbs)]} />
       <PageHero eyebrow={t.toursPage.eyebrow} title={copy.title} lead={copy.lead} image={image} imageAlt={copy.imageAlt} crumbs={crumbs} />
 
-      <section className="on-sand bg-sand text-sand-foreground" aria-labelledby="perks-title">
+      <section className="bg-sand" aria-labelledby="perks-title">
         <div className="container section-tight">
           <SectionHeading title={copy.perksTitle} id="perks-title" />
           <RevealGroup as="ul" className="mt-10 grid gap-8 md:grid-cols-3">
             {perks.map(([k, p]) => {
               const Icon = icons[k];
               return (
-                <RevealItem as="li" key={k} className="border-t border-sand-foreground/20 pt-6">
-                  <Icon className="size-7 text-primary-ink" aria-hidden="true" />
+                <RevealItem as="li" key={k} className="border-t border-foreground/15 pt-6">
+                  <Icon className="size-7 text-accent" aria-hidden="true" />
                   <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
-                  <p className="mt-2 leading-relaxed text-sand-foreground/80">{p.text}</p>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{p.text}</p>
                 </RevealItem>
               );
             })}
@@ -60,7 +60,7 @@ export function ToursOverview({ form }: Props) {
       <CtaBand
         title={copy.ctaTitle}
         text={copy.ctaText}
-        image={isGroup ? "photos/campfire" : "photos/riders-mountain"}
+        image={isGroup ? "photos/campfire" : "photos/sierra-nevada"}
         imageAlt={isGroup ? t.experience.fireImageAlt : t.experience.imageAlt}
         secondary={
           <ButtonLink to={pathFor(isGroup ? "tailorMade" : "groupTours", lang)} variant="outline" size="lg">

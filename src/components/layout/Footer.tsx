@@ -30,7 +30,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-border bg-[#0f0d0c] pt-16 text-sm md:pt-24">
+    <footer className="theme-dark relative overflow-hidden bg-background pt-20 text-sm text-foreground md:pt-28">
       <div className="container">
         <div className="grid-12">
           <div className="col-span-4 md:col-span-12 lg:col-span-4">
@@ -38,15 +38,15 @@ export function Footer() {
               <Logo />
             </LocalLink>
             <p className="mt-6 max-w-sm leading-relaxed text-foreground/75">{t.footer.about}</p>
-            <p className="font-display mt-6 text-lg uppercase tracking-wider text-primary">{t.footer.tagline}</p>
+            <p className="serif-accent mt-6 text-2xl text-accent">{t.footer.tagline}</p>
           </div>
 
           <nav aria-label={t.footer.tours} className="col-span-2 md:col-span-4 lg:col-span-2">
-            <h2 className="font-display text-base uppercase tracking-wider text-foreground">{t.footer.tours}</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground [font-stretch:100%]">{t.footer.tours}</h2>
             <ul className="mt-5 space-y-3">
               {tours.map((l) => (
                 <li key={l.href}>
-                  <LocalLink to={l.href} className="link-underline text-foreground/75 hover:text-foreground">
+                  <LocalLink to={l.href} className="link-underline text-foreground/80 hover:text-foreground">
                     {l.label}
                   </LocalLink>
                 </li>
@@ -55,11 +55,11 @@ export function Footer() {
           </nav>
 
           <nav aria-label={t.footer.info} className="col-span-2 md:col-span-4 lg:col-span-3">
-            <h2 className="font-display text-base uppercase tracking-wider text-foreground">{t.footer.info}</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground [font-stretch:100%]">{t.footer.info}</h2>
             <ul className="mt-5 space-y-3">
               {info.map((l) => (
                 <li key={l.href}>
-                  <LocalLink to={l.href} className="link-underline text-foreground/75 hover:text-foreground">
+                  <LocalLink to={l.href} className="link-underline text-foreground/80 hover:text-foreground">
                     {l.label}
                   </LocalLink>
                 </li>
@@ -68,21 +68,21 @@ export function Footer() {
           </nav>
 
           <div className="col-span-4 md:col-span-4 lg:col-span-3">
-            <h2 className="font-display text-base uppercase tracking-wider text-foreground">{t.footer.contact}</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground [font-stretch:100%]">{t.footer.contact}</h2>
             <ul className="mt-5 space-y-3 text-foreground/75">
               <li>
                 <a href={`mailto:${site.email}`} className="link-underline hover:text-foreground">
-                  <Mail className="size-4 text-primary" aria-hidden="true" /> {site.email}
+                  <Mail className="size-4 text-accent" aria-hidden="true" /> {site.email}
                 </a>
               </li>
               <li>
                 <a href={site.phoneHref} className="link-underline hover:text-foreground">
-                  <Phone className="size-4 text-primary" aria-hidden="true" /> {site.phoneDisplay}
+                  <Phone className="size-4 text-accent" aria-hidden="true" /> {site.phoneDisplay}
                 </a>
               </li>
               <li>
                 <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="link-underline hover:text-foreground">
-                  <MessageCircle className="size-4 text-primary" aria-hidden="true" /> {t.footer.whatsapp}
+                  <MessageCircle className="size-4 text-accent" aria-hidden="true" /> {t.footer.whatsapp}
                   <span className="sr-only">{t.common.opensInNewTab}</span>
                 </a>
               </li>
@@ -92,11 +92,11 @@ export function Footer() {
             </ul>
             {site.socials.length > 0 && (
               <div className="mt-6">
-                <h2 className="font-display text-base uppercase tracking-wider">{t.footer.social}</h2>
+                <h2 className="text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground">{t.footer.social}</h2>
                 <ul className="mt-3 flex gap-4">
                   {site.socials.map((s) => (
                     <li key={s.href}>
-                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="link-underline text-foreground/75 hover:text-foreground">
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="link-underline text-foreground/80 hover:text-foreground">
                         {s.label}
                         <span className="sr-only"> {t.common.opensInNewTab}</span>
                       </a>
@@ -109,7 +109,7 @@ export function Footer() {
               href={site.stoGarant.participants}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 flex items-center gap-4 rounded-lg bg-sand p-3 pr-4 text-sand-foreground transition-transform duration-300 hover:-translate-y-0.5"
+              className="mt-8 flex items-center gap-4 rounded-lg bg-sand p-3 pr-4 text-[hsl(var(--ink))] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <span className="w-12">
                 <StoLogo />
@@ -122,7 +122,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col-reverse items-start justify-between gap-6 border-t border-border py-8 text-xs text-foreground/70 md:flex-row md:items-center">
+        <div
+          aria-hidden="true"
+          data-word="Crossing of Limits"
+          className="font-display pointer-events-none mt-20 select-none whitespace-nowrap text-center text-[clamp(2rem,9.6vw,9.5rem)] leading-[0.85] tracking-[-0.06em] text-foreground/[0.09] [font-stretch:125%] before:content-[attr(data-word)]"
+        />
+        <div className="flex flex-col-reverse items-start justify-between gap-6 border-t border-border py-8 text-xs text-foreground/70 md:flex-row md:items-center">
           <p>
             © {year} {site.name}. {t.footer.rights} {t.footer.kvk} {site.kvk}.
           </p>

@@ -13,7 +13,7 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT = path.join(ROOT, "public", "media");
 
 const groups = [
-  { dir: "photos", widths: [480, 828, 1280, 1920], quality: { avif: 44, webp: 68, jpeg: 72 } },
+  { dir: "photos", widths: [480, 828, 1280, 1600, 1920], quality: { avif: 44, webp: 68, jpeg: 72 } },
   { dir: "itineraries", widths: [640, 1024, 1536], quality: { avif: 60, webp: 80, jpeg: 80 } },
 ];
 
@@ -68,7 +68,7 @@ for (const w of [96, 192]) {
 const stoMeta = await sharp(sto).metadata();
 
 // Open Graph image (1200x630)
-await sharp(path.join(ROOT, "media-src/photos/hero-road.jpg"))
+await sharp(path.join(ROOT, "media-src/photos/hero-andalusia.jpg"))
   .resize(1200, 630, { fit: "cover", position: "centre" })
   .composite([{ input: await sharp(logo).resize({ width: 300 }).toBuffer(), gravity: "southwest", top: 300, left: 60 }])
   .jpeg({ quality: 82, mozjpeg: true })

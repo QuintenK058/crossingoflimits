@@ -1,5 +1,4 @@
-import "@fontsource-variable/oswald/wght.css";
-import "@fontsource-variable/inter/wght.css";
+import "@fontsource/instrument-serif/latin-400-italic.css";
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";

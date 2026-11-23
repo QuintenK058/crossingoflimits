@@ -141,7 +141,7 @@ export function PlanForm({ prefill }: { prefill: PlanPrefill }) {
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-border bg-card p-8 md:p-12" role="status">
-        <svg viewBox="0 0 64 64" className="size-20 text-primary" aria-hidden="true">
+        <svg viewBox="0 0 64 64" className="size-20 text-accent" aria-hidden="true">
           <m.circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="3" initial={(ok ? { pathLength: 0 } : false) as never} animate={{ pathLength: 1 } as never} transition={{ duration: 0.8, ease }} />
           <m.path
             d="M20 33 l8 8 l16 -18"
@@ -197,7 +197,7 @@ export function PlanForm({ prefill }: { prefill: PlanPrefill }) {
         <ol className="mt-4 hidden grid-cols-4 gap-2 text-xs md:grid">
           {steps.map((s, i) => (
             <li key={s} aria-current={i === step ? "step" : undefined} className={i <= step ? "text-foreground" : "text-foreground/55"}>
-              <span className="font-display mr-1 text-primary">{i + 1}.</span> {s}
+              <span className="font-display mr-1 text-accent">{i + 1}.</span> {s}
             </li>
           ))}
         </ol>
@@ -228,7 +228,7 @@ export function PlanForm({ prefill }: { prefill: PlanPrefill }) {
             <>
               <div role="radiogroup" aria-labelledby="reisvorm-label" aria-describedby={describedBy("reisvorm", err("reisvorm"), true)} className="space-y-3">
                 <p id="reisvorm-label" className="text-sm font-semibold">
-                  {f.tripForm} <span className="text-primary" aria-hidden="true">*</span>
+                  {f.tripForm} <span className="text-accent" aria-hidden="true">*</span>
                 </p>
                 <p id="reisvorm-hint" className="text-xs text-foreground/70">
                   {f.tripFormHint}
@@ -278,7 +278,7 @@ export function PlanForm({ prefill }: { prefill: PlanPrefill }) {
             <>
               <div role="radiogroup" aria-labelledby="land-label" className="space-y-3">
                 <p id="land-label" className="text-sm font-semibold">
-                  {f.destination} <span className="text-primary" aria-hidden="true">*</span>
+                  {f.destination} <span className="text-accent" aria-hidden="true">*</span>
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {(["Spain", "Morocco"] as const).map((c) => (
@@ -390,10 +390,10 @@ export function PlanForm({ prefill }: { prefill: PlanPrefill }) {
                   label={
                     <>
                       {f.privacy}{" "}
-                      <LocalLink to={pathFor("privacy", lang)} target="_blank" className="font-semibold text-primary underline underline-offset-4">
+                      <LocalLink to={pathFor("privacy", lang)} target="_blank" className="font-semibold text-accent underline underline-offset-4">
                         {f.privacyLink}
                       </LocalLink>
-                      . <span className="text-primary" aria-hidden="true">*</span>
+                      . <span className="text-accent" aria-hidden="true">*</span>
                     </>
                   }
                   {...register("privacy")}
