@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { TripCard } from "@/components/sections/TripCard";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { ParallaxImage } from "@/components/ui/Parallax";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { ButtonLink } from "@/components/ui/button";
 
 export default function TailorMade() {
@@ -73,7 +73,7 @@ export default function TailorMade() {
           </div>
           <div className="col-span-4 md:col-span-6">
             <Reveal>
-              <ParallaxImage image="photos/hero-coast" alt={t.toursPage.group.imageAlt} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-xl" />
+              <ImageReveal image="photos/hero-coast" alt={t.toursPage.group.imageAlt} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-[var(--radius)]" />
               <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">{c.support}</p>
             </Reveal>
           </div>

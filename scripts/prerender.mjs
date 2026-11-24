@@ -3,7 +3,7 @@
  * page has its own title/meta/hreflang/JSON-LD and content for crawlers.
  * Also writes sitemap.xml, robots.txt, 404.html and redirect files.
  */
-import { readFile, writeFile, mkdir, readdir, rm } from "node:fs/promises";
+import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -21,7 +21,6 @@ if (cssLink) {
 }
 
 // Preload the two variable fonts (latin subset) used above the fold.
-const assets = await readdir(path.join(DIST, "assets"));
 const fontPreloads = `<link rel="preload" href="/fonts/archivo-var-subset.woff2" as="font" type="font/woff2" crossorigin>`;
 
 const noscript = `<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>`;
@@ -74,7 +73,7 @@ function pagePreloads(url) {
 // fonts needed for the first paint win the bandwidth race.
 template = template.replace(/<script type="module" crossorigin/, '<script type="module" fetchpriority="low" crossorigin')
   .replace(/<link rel="modulepreload" crossorigin/g, '<link rel="modulepreload" fetchpriority="low" crossorigin');
-const logoPreload = `<link rel="preload" as="image" type="image/webp" imagesrcset="/media/brand/logo-160.webp 1x, /media/brand/logo-240.webp 1.5x, /media/brand/logo-320.webp 2x" fetchpriority="high">`;
+const logoPreload = `<link rel="preload" as="image" type="image/webp" imagesrcset="/media/brand/logo-160.webp 160w, /media/brand/logo-240.webp 240w, /media/brand/logo-320.webp 320w" imagesizes="(min-width: 768px) 68px, 57px" fetchpriority="high">`;
 
 function fill(html, head, lang, url) {
   return template

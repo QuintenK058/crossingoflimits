@@ -140,3 +140,22 @@ test("reduced motion: content is visible without animation", async ({ browser })
   expect(opacity).toBe("ok");
   await ctx.close();
 });
+
+test("trip page: sticky booking bar on mobile", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile only");
+  await page.addInitScript(() => localStorage.setItem("col-cookie-notice", "1"));
+  await page.goto("/reizen/sahara-route");
+  await page.evaluate(() => window.scrollTo(0, 1400));
+  const bar = page.locator("div.fixed.bottom-0").filter({ hasText: "€ 2.550" });
+  await expect(bar).toBeVisible();
+  await bar.getByRole("link", { name: /Vraag deze reis aan/ }).click();
+  await expect(page).toHaveURL(/\/plan\?reis=sahara-route/);
+});
+
+test("trip page: timeline opens the 8-day route", async ({ page }) => {
+  await page.goto("/reizen/castilie-la-mancha");
+  const trigger = page.getByRole("button", { name: /De 8-daagse route/ });
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await trigger.click();
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+});

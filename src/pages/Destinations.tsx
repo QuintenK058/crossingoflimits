@@ -8,7 +8,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { ParallaxImage } from "@/components/ui/Parallax";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { ButtonLink } from "@/components/ui/button";
 import { StoNotice } from "@/components/layout/StoBadge";
 
@@ -37,7 +37,7 @@ export default function Destinations() {
           <div className="container grid-12 items-start">
             <div className={`col-span-4 md:col-span-6 ${i % 2 ? "md:order-2" : ""}`}>
               <Reveal>
-                <ParallaxImage image={d.image} alt={l(d.imageAlt)} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-xl md:aspect-[4/5]" />
+                <ImageReveal image={d.image} alt={l(d.imageAlt)} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-[var(--radius)] md:aspect-[4/5]" />
               </Reveal>
             </div>
             <div className="col-span-4 md:col-span-6 md:pt-10">

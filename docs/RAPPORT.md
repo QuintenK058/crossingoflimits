@@ -25,6 +25,16 @@ Op verzoek opnieuw vormgegeven: "te veel zoals de oude, meer animaties, duidelij
   telt Lighthouse het logo als LCP en het lettertype + de JS concurreren daarmee. De Engelse homepage scoorde 89 in
   de laatste meting, net onder de grens. Zie `reports/lighthouse/summary.md`.
 
+### Vervolg 24 november 2026
+- **Reisdetailpagina** vernieuwd: grote kerngegevens, dagprogramma als tijdlijn met een lijn die meetekent tijdens
+  het scrollen, route als grote typografie, donker aanvraagblok, "andere reizen" als swipe-rij en op mobiel een
+  vaste boekingsbalk (prijs + "Vraag deze reis aan") die na de hero inschuift.
+- **Bestemmingen / De Ervaring / Op maat**: beelden met gordijn-reveal, marquee met hoogtepunten per bestemming,
+  donker blok naar de andere bestemming, nieuwe foto's bij de dagmomenten.
+- **Snelheid**: Archivo als eigen subset (88 → 48 KB) en een responsief logo (8,5 KB op mobiel). Lighthouse mobiel
+  (mediaan van 3): Performance 91–100 op alle 9 gemeten pagina's, Accessibility/Best Practices/SEO 100.
+- 35 E2E-tests (o.a. tijdlijn en mobiele boekingsbalk), 0 dode links, geen horizontale overflow van 375 tot 1440 px.
+
 ---
 
 

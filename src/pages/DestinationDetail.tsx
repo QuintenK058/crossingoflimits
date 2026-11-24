@@ -14,6 +14,8 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { TripCard } from "@/components/sections/TripCard";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ParallaxImage } from "@/components/ui/Parallax";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Marquee } from "@/components/ui/Marquee";
 import { LocalLink } from "@/components/ui/LocalLink";
 import NotFound from "./NotFound";
 
@@ -44,12 +46,17 @@ export default function DestinationDetail() {
       />
       <PageHero size="lg" eyebrow={fmt(t.destinationsPage.destinationLabel, { number: d.number })} title={l(d.name)} lead={l(d.intro)} image={d.image} imageAlt={l(d.imageAlt)} crumbs={crumbs} />
 
+      <Marquee
+        items={d.regions.flatMap((r) => r.highlights.map(l))}
+        className="font-display mt-20 border-y border-foreground/15 py-5 text-[clamp(2rem,5.5vw,4.5rem)] leading-none stretch-wide"
+      />
+
       <section className="section" aria-labelledby="mood-title">
         <div className="container grid-12 items-center">
           <div className="col-span-4 md:col-span-6">
             <Reveal>
               <p className="eyebrow">{c.mood}</p>
-              <h2 id="mood-title" className="heading-2 mt-3 text-balance">
+              <h2 id="mood-title" className="mt-5 text-balance text-[clamp(1.9rem,3.2vw,3rem)]">
                 {l(d.tagline)}
               </h2>
               <p className="lead mt-6">{l(d.mood)}</p>
@@ -77,7 +84,7 @@ export default function DestinationDetail() {
           </div>
           <div className="col-span-4 md:col-span-6">
             <Reveal>
-              <ParallaxImage image={d.secondaryImage} alt={l(d.secondaryImageAlt)} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-xl" />
+              <ImageReveal image={d.secondaryImage} alt={l(d.secondaryImageAlt)} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/5] rounded-[var(--radius)]" />
             </Reveal>
           </div>
         </div>
@@ -123,10 +130,10 @@ export default function DestinationDetail() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden" aria-label={fmt(c.otherDestination, { name: l(other.name) })}>
-        <ParallaxImage image={other.image} alt="" sizes="100vw" className="absolute inset-0 -z-10" overlay="bg-background/70" />
+      <section className="theme-dark relative isolate overflow-hidden bg-background text-foreground" aria-label={fmt(c.otherDestination, { name: l(other.name) })}>
+        <ParallaxImage image={other.image} alt="" sizes="100vw" className="absolute inset-0 -z-10" overlay="bg-[hsl(var(--ink)/0.55)]" />
         <div className="container py-20 md:py-28">
-          <LocalLink to={destinationPath(other.id, lang)} className="group inline-flex items-center gap-4 font-display text-[clamp(2rem,5vw,4rem)] uppercase hover:text-accent">
+          <LocalLink to={destinationPath(other.id, lang)} className="group inline-flex items-center gap-4 font-display text-[clamp(2.2rem,6vw,5.5rem)] leading-none stretch-wide hover:text-primary">
             {fmt(c.otherDestination, { name: l(other.name) })}
             <ArrowRight className="size-8 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true" />
           </LocalLink>

@@ -11,7 +11,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading } from "@/components/sections/SectionHeading";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/ui/Reveal";
-import { ParallaxImage } from "@/components/ui/Parallax";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 /* Waypoints on a 1000×80 canvas; the road passes exactly through each one. */
 const POINTS = Array.from({ length: 6 }, (_, i) => ({ x: 80 + i * 168, y: i % 2 ? 58 : 22 }));
@@ -30,10 +30,10 @@ const ROAD = buildPath();
 
 type MomentKey = "morning" | "ride" | "stops" | "arrival" | "dinner" | "fire";
 const MOMENTS: { key: MomentKey; image: MediaKey }[] = [
-  { key: "morning", image: "photos/pyrenees" },
+  { key: "morning", image: "photos/cockpit" },
   { key: "ride", image: "photos/sierra-nevada" },
   { key: "stops", image: "photos/white-village" },
-  { key: "arrival", image: "photos/riad" },
+  { key: "arrival", image: "photos/support-van" },
   { key: "dinner", image: "photos/bbq" },
   { key: "fire", image: "photos/campfire" },
 ];
@@ -132,7 +132,7 @@ export default function Experience() {
                 <li key={mo.key} className="grid-12 items-center py-16 md:py-24">
                   <div className={cn("col-span-4 md:col-span-6", i % 2 ? "md:order-2 md:col-start-7" : "")}>
                     <Reveal>
-                      <ParallaxImage image={mo.image} alt="" sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/3] rounded-xl" strength={0.12} />
+                      <ImageReveal image={mo.image} alt="" sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[4/3] rounded-[var(--radius)]" parallax={0.12} />
                     </Reveal>
                   </div>
                   <div className={cn("col-span-4 md:col-span-5", i % 2 ? "md:col-start-1 md:row-start-1" : "md:col-start-8")}>
@@ -165,7 +165,7 @@ export default function Experience() {
           </div>
           <div className="col-span-4 md:col-span-7">
             <Reveal>
-              <ParallaxImage image="photos/riad" alt={c.staysImageAlt} sizes="(min-width: 768px) 58vw, 100vw" className="aspect-[16/10] rounded-xl" />
+              <ImageReveal image="photos/riad" alt={c.staysImageAlt} sizes="(min-width: 768px) 58vw, 100vw" className="aspect-[16/10] rounded-[var(--radius)]" />
             </Reveal>
           </div>
         </div>

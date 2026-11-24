@@ -35,7 +35,7 @@ export function Footer() {
         <div className="grid-12">
           <div className="col-span-4 md:col-span-12 lg:col-span-4">
             <LocalLink to={pathFor("home", lang)} aria-label={t.nav.logoLabel} className="block h-24 w-fit">
-              <Logo />
+              <Logo sizes="114px" />
             </LocalLink>
             <p className="mt-6 max-w-sm leading-relaxed text-foreground/75">{t.footer.about}</p>
             <p className="serif-accent mt-6 text-2xl text-accent">{t.footer.tagline}</p>

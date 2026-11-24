@@ -10,24 +10,14 @@ import { Seo } from "@/seo/Seo";
 import { breadcrumbSchema, touristTripSchema } from "@/seo/schema";
 import { PageHero } from "@/components/sections/PageHero";
 import { TripCard, tripDays } from "@/components/sections/TripCard";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Timeline } from "@/components/sections/Timeline";
+import { StickyBookBar } from "@/components/sections/StickyBookBar";
 import { Gallery, type GalleryItem } from "@/components/ui/Lightbox";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/button";
 import { StoNotice } from "@/components/layout/StoBadge";
 import NotFound from "./NotFound";
 
-function Paragraphs({ text }: { text: string }) {
-  return (
-    <>
-      {text.split(/\n\s*\n/).map((p, i) => (
-        <p key={i} className="mb-4 last:mb-0">
-          {p}
-        </p>
-      ))}
-    </>
-  );
-}
 
 export default function TripDetail() {
   const { slug = "" } = useParams();
@@ -104,18 +94,18 @@ function TripView({ trip }: { trip: Trip }) {
       </PageHero>
 
       {/* Key facts */}
-      <section aria-labelledby="facts-title" className="border-y border-border bg-sand">
+      <section aria-labelledby="facts-title" className="container mt-16 md:mt-20">
         <h2 id="facts-title" className="sr-only">
           {t.trip.keyFacts}
         </h2>
-        <dl className="container grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
+        <RevealGroup as="dl" className="grid grid-cols-2 border-t border-foreground/15 md:grid-cols-3 xl:grid-cols-6" stagger={0.06}>
           {facts.map((f) => (
-            <div key={f.label} className="border-b border-border py-6 pr-4 xl:border-b-0 xl:border-r xl:px-6 xl:first:pl-0 xl:last:border-r-0">
-              <dt className="text-xs font-semibold uppercase tracking-eyebrow text-foreground/70">{f.label}</dt>
-              <dd className="mt-2 font-display text-xl leading-tight">{f.value}</dd>
-            </div>
+            <RevealItem key={f.label} className="border-b border-foreground/15 py-6 pr-4 xl:border-b-0 xl:border-r xl:px-6 xl:first:pl-0 xl:last:border-r-0">
+              <dt className="text-xs font-semibold uppercase tracking-eyebrow text-muted-foreground">{f.label}</dt>
+              <dd className="mt-3 font-display text-2xl leading-tight">{f.value}</dd>
+            </RevealItem>
           ))}
-        </dl>
+        </RevealGroup>
       </section>
 
       <div className="container section">
@@ -138,7 +128,9 @@ function TripView({ trip }: { trip: Trip }) {
               <h2 id="route-title" className="heading-3">
                 {t.trip.route}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-foreground/85">{l(trip.route)}</p>
+              <p className="font-display mt-5 text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold leading-snug tracking-[-0.02em] [font-stretch:105%]">
+                {l(trip.route)}
+              </p>
             </Reveal>
 
             {trip.itinerary.length > 0 && (
@@ -148,25 +140,17 @@ function TripView({ trip }: { trip: Trip }) {
                     {t.trip.dayByDay}
                   </h2>
                 </Reveal>
-                <Reveal className="mt-4">
-                  <Accordion type="multiple" defaultValue={[trip.itinerary[0].day]} className="border-t border-current/15">
-                    {trip.itinerary.map((d) => (
-                      <AccordionItem key={d.day} value={d.day}>
-                        <AccordionTrigger>
-                          <span className="flex items-baseline gap-4">
-                            <span className="w-24 shrink-0 font-display text-sm uppercase tracking-wider text-accent">
-                              {d.variant ? fmt(t.trip.variantLabel, { days: d.day }) : fmt(t.trip.dayLabel, { day: d.day.replace("-", "–") })}
-                            </span>
-                            <span>{l(d.title)}</span>
-                          </span>
-                        </AccordionTrigger>
-                        <AccordionContent className="md:pl-28">
-                          <Paragraphs text={l(d.text)} />
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </Reveal>
+                <div className="mt-6">
+                  <Timeline
+                    defaultOpen={[trip.itinerary[0].day]}
+                    items={trip.itinerary.map((d) => ({
+                      id: d.day,
+                      label: d.variant ? fmt(t.trip.variantLabel, { days: d.day }) : fmt(t.trip.dayLabel, { day: d.day.replace("-", "–") }),
+                      title: l(d.title),
+                      body: l(d.text),
+                    }))}
+                  />
+                </div>
               </section>
             )}
 
@@ -218,18 +202,18 @@ function TripView({ trip }: { trip: Trip }) {
 
           {/* Sticky booking box */}
           <aside className="col-span-4 md:col-span-5 lg:col-span-4" aria-labelledby="box-title">
-            <div className="sticky top-[calc(var(--nav-h)+1.5rem)] rounded-xl border border-border bg-card p-6 md:p-8">
+            <div className="theme-dark sticky top-[calc(var(--nav-h)+1.5rem)] rounded-[var(--radius)] bg-background p-6 text-foreground md:p-8">
               <h2 id="box-title" className="font-display text-2xl">
                 {t.trip.bookingBoxTitle}
               </h2>
-              <p className="mt-4 text-sm text-foreground/75">{t.common.from}</p>
+              <p className="mt-6 text-sm text-muted-foreground">{t.common.from}</p>
               <p className="font-display text-5xl text-accent">{price ?? t.common.onRequest}</p>
               <p className="mt-1 text-sm text-foreground/75">{l(trip.priceNote)}</p>
               <p className="mt-5 text-sm">
                 <span className="text-foreground/70">{t.trip.forms}: </span>
                 {trip.forms.map((f) => t.common.tripForms[f]).join(" · ")}
               </p>
-              <ButtonLink to={planLink} size="lg" className="mt-6 w-full">
+              <ButtonLink to={planLink} size="lg" variant="accent" className="mt-6 w-full">
                 {t.trip.request} <ArrowRight aria-hidden="true" />
               </ButtonLink>
               <p className="mt-3 text-center text-xs text-foreground/70">{t.common.noObligation}</p>
@@ -249,15 +233,16 @@ function TripView({ trip }: { trip: Trip }) {
               {t.common.discover} {countryName}
             </ButtonLink>
           </div>
-          <RevealGroup as="ul" className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <RevealGroup as="ul" className="no-scrollbar -mx-4 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 xl:grid-cols-3">
             {related.map((r) => (
-              <RevealItem as="li" key={r.slug}>
+              <RevealItem as="li" key={r.slug} className="w-[78vw] shrink-0 snap-start sm:w-[46vw] md:w-auto">
                 <TripCard trip={r} />
               </RevealItem>
             ))}
           </RevealGroup>
         </div>
       </section>
+      <StickyBookBar label={t.trip.bookingBoxTitle} price={price ? `${t.common.from} ${price}` : t.common.onRequest} to={planLink} cta={t.trip.request} />
     </>
   );
 }
